@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VERSION=latest
-IMAGE=mikenye/youtube-dl
+IMAGE=itachi1706/youtube-dl-with-aria2
 
 docker context use x86_64
 export DOCKER_CLI_EXPERIMENTAL="enabled"
@@ -9,14 +9,14 @@ docker buildx use homecluster
 
 # Build latest
 docker buildx build -t ${IMAGE}:${VERSION} --no-cache --progress=plain --compress --push --platform linux/amd64,linux/arm/v7,linux/arm64 . || exit 1
-docker pull mikenye/youtube-dl:latest
+docker pull itachi1706/youtube-dl-with-aria2:latest
 sleep 15
 # Get version of latest container
 # Repeat as running straight after the build can give a 'bad interpreter: Text file busy' error
 n=0
 until [ $n -ge 5 ]
 do
-    if build_version=$(docker run --rm mikenye/youtube-dl:latest --version || exit 1); then
+    if build_version=$(docker run --rm itachi1706/youtube-dl-with-aria2:latest --version || exit 1); then
         # shellcheck disable=SC2001
         build_version=$(echo "$build_version" | sed 's/\r$//')
         break

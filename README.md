@@ -1,12 +1,12 @@
-# mikenye/youtube-dl
+# itachi1706/youtube-dl-with-aria2
 
-![Linting](https://github.com/mikenye/docker-youtube-dl/workflows/Linting/badge.svg) ![Docker](https://github.com/mikenye/docker-youtube-dl/workflows/Docker/badge.svg)
+![Linting](https://github.com/itachi1706/docker-youtube-dl/workflows/Linting/badge.svg) ![Docker](https://github.com/itachi1706/docker-youtube-dl/workflows/Docker/badge.svg)
 
-`youtube-dl` - download videos from youtube.com or other video platforms
+`youtube-dl` - download videos from many online video platforms
 
 ## Table of Contents
 
-* [mikenye/youtube-dl](#mikenyeyoutube-dl)
+* [itachi1706/youtube-dl-with-aria2](#itachi1706youtube-dl-with-aria2)
   * [Table of Contents](#table-of-contents)
   * [Multi Architecture Support](#multi-architecture-support)
   * [Quick Start](#quick-start)
@@ -40,7 +40,7 @@ alias youtube-dl='docker run \
                   -e PGID=$(id -g) \
                   -e PUID=$(id -u) \
                   -v "$(pwd)":/workdir:rw \
-                  mikenye/youtube-dl'
+                  itachi1706/youtube-dl-with-aria2'
 ```
 
 **HANDY HINT:** After updating your `.bash_aliases` file, run `source ~/.bash_aliases` to make your changes live!
@@ -60,7 +60,7 @@ docker run \
     -e PUID=$(id -u) \
     -v /path/to/downloaded/videos:/workdir:rw \
     -v /path/to/youtube-dl.conf:/etc/youtube-dl.conf:ro \
-    mikenye/youtube-dl
+    itachi1706/youtube-dl-with-aria2
 ```
 
 Where:
@@ -95,7 +95,7 @@ docker run \
     -v /path/to/downloaded/videos:/workdir:rw \
     -v /path/to/youtube-dl.conf:/etc/youtube-dl.conf:ro \
     -v /path/to/netrc_file:/home/dockeruser/.netrc:ro
-    mikenye/youtube-dl
+    itachi1706/youtube-dl-with-aria2
 ```
 
 ## Data Volumes
@@ -136,7 +136,7 @@ docker run \
     -v /path/to/netrc:/home/dockeruser/.netrc:ro
     -v /path/to/youtube/subscriptions:/workdir:rw
     -v /path/to/youtube-dl.conf:/etc/youtube-dl.conf:ro
-    mikenye/youtube-dl \
+    itachi1706/youtube-dl-with-aria2 \
     :ytsubscriptions \
     --dateafter now-5days \
     --download-archive /workdir/.youtube-dl-archive \
@@ -197,7 +197,7 @@ The above example config file will:
 If the system on which the container runs doesn't provide a way to easily update the Docker image (eg: watchtower), simply pull the latest version of the container:
 
 ```shell
-docker pull mikenye/youtube-dl
+docker pull itachi1706/youtube-dl-with-aria2
 ```
 
 ## Shell access
@@ -213,9 +213,5 @@ Where `CONTAINER` is the name of the running container.
 To start a container with a shell (instead of `youtube-dl`), execute the following command:
 
 ```shell
-docker run --rm -ti --entrypoint=/bin/sh mikenye/youtube-dl
+docker run --rm -ti --entrypoint=/bin/sh itachi1706/youtube-dl-with-aria2
 ```
-
-## Support or Contact
-
-Having troubles with the container or have questions? Please [create a new issue](https://github.com/mikenye/docker-youtube-dl/issues).

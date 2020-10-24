@@ -9,14 +9,33 @@ on:
     branches:
       - master
       - dev
+  schedule:
+    - cron: '0 3 * * *'
 
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build --no-cache . --file Dockerfile --tag mikenye/youtube-dl:testing
+      run: docker build --no-cache . --file Dockerfile --tag itachi1706/youtube-dl-with-aria2:testing
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      run: echo "${DOCKER_PASSWORD}" | docker login --username ${DOCKER_USERNAME} --password-stdin
+    - name: Set up Docker Buildx
+      id: buildx
+      uses: crazy-max/ghaction-docker-buildx@v3.2.0
+      with:
+        buildx-version: latest
+        qemu-version: latest
+    - name: Make BuildX executable
+      run: chmod +x buildx.sh
+    - name: Build the Docker images
+      run: ./buildx.sh
