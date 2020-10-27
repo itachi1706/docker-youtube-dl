@@ -1,5 +1,5 @@
 # Build dir
-FROM debian:stable-20190610-slim AS build
+FROM debian:stable-slim AS build
 
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
