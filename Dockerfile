@@ -25,9 +25,7 @@ RUN apt-get install --no-install-recommends -y \
         zip
 
 RUN update-ca-certificates
-RUN curl -kL https://yt-dl.org/downloads/2020.09.20/youtube-dl-2020.09.20.tar.gz -o youtube-dl.tar.gz
-RUN mkdir -p /src/youtube-dl
-RUN tar -xvzf youtube-dl.tar.gz -C /src/youtube-dl --strip-components=1
+RUN git clone https://github.com/ytdl-org/youtube-dl.git /src/youtube-dl
 
 WORKDIR /src/youtube-dl
 RUN make
